@@ -8,7 +8,7 @@ budget_csv = os.path.join('resources', 'budget_data.csv')
 # Define the funtion to be called to run the analysis
 def print_financial_analysis(budget_data): #Figure out what my parameters should be if any
     #Create variables to store key information
-    months = 0 #can we just rely on the number of rows minus that for the header?
+    months = 0
     total = 0
     average_change = 0
     first_amount = 0
@@ -27,7 +27,7 @@ def print_financial_analysis(budget_data): #Figure out what my parameters should
         #Record first amount value and last amount value
         if months == 1:
             first_amount = int(row[1])
-        elif months == 86: #Does this need to be dynamic?
+        elif months == 86:
             last_amount = int(row[1])
 
         #Condition on whether there is a previous amount by checking if the value is none
@@ -45,7 +45,7 @@ def print_financial_analysis(budget_data): #Figure out what my parameters should
         #This needs to be the last thing done in the for loop so I don't mess it up
         previous_amount = int(row[1])
 
-    #Calculate average change - not sure how TODO this
+    #Calculate average change
     # delta y / delta x = (y2 - y1)/(x2 - x1) = (Last total - first total)/(last month count - first month)
     average_change = (last_amount - first_amount)/(months - 1)
 
@@ -59,7 +59,6 @@ def print_financial_analysis(budget_data): #Figure out what my parameters should
     print(f"Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})")
 
     #Export the same information to an additional file in the analysis folder
-    
     file = open("analysis/budget_analysis.txt", "w")
     file.write("Financial Analysis\n")
     file.write("-------------\n")
